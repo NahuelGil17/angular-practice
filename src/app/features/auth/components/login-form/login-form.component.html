@@ -1,0 +1,14 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="flex-container">
+    <h1>Login Form</h1>
+    <label for="email">Email</label>
+    <input type="text" formControlName="email" required type="email" autocomplete="off" id="email">
+    <label for="password">Password</label>
+    <input type="password" formControlName="password" id="password">
+    <button type="submit">Login</button>
+    <div>
+      <span>Don't have an account?</span>
+      <a routerLink="/signup">Sign Up</a>
+    </div>
+  </div>
+</form>
