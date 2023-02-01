@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { passwordValidator } from 'src/app/core/validators/password.validator';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -15,7 +16,8 @@ export class SignUpFormComponent implements OnInit {
     this.signUpForm = this.fb.group({
       name: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]],
+      password: [null, [Validators.required, passwordValidator()]],
+      confirmPassword: [null, [Validators.required, passwordValidator()]],
     });
   }
 
