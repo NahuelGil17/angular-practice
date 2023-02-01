@@ -29,7 +29,6 @@ export class LoginFormComponent implements OnInit {
       const { email, password } = this.loginForm.value;
       const login = this.authService.login(email, password);
       if (login) {
-        // navigate to profile
         this.route.navigate(['profile']);
       }
     }
