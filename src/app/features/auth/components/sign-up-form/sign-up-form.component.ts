@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { passwordValidator } from 'src/app/core/validators/password.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -10,14 +11,18 @@ import { passwordValidator } from 'src/app/core/validators/password.validator';
 })
 export class SignUpFormComponent implements OnInit {
   signUpForm!: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
       name: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, passwordValidator()]],
-      confirmPassword: [null, [Validators.required, passwordValidator()]],
+      password: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
     });
   }
 
@@ -27,7 +32,7 @@ export class SignUpFormComponent implements OnInit {
       const signUp = this.authService.signUp(name, email, password);
       if (signUp) {
         // navigate to login
-        console.log('navigate to login');
+        this.router.navigate(['login']);
       }
     }
   }
